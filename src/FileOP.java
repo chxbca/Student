@@ -1,14 +1,15 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 import java.util.Collection;
-import java.util.List;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.List;
+import java.io.File;
 
 class FileOP {
-    static <T> List<T> read(File file, Class<T> clazz) throws FileNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    static <T> List<T> read(File file, Class<T> clazz) throws InvocationTargetException, FileNotFoundException,
+            InstantiationException, IllegalAccessException, NoSuchMethodException {
         var list = new ArrayList<T>();
         try (var read = new Scanner(file)) {
             while (read.hasNext()) {
@@ -19,7 +20,8 @@ class FileOP {
         return list;
     }
 
-    static <T> List<T> read(String filePath, Class<T> clazz) throws FileNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    static <T> List<T> read(String filePath, Class<T> clazz) throws InvocationTargetException, FileNotFoundException,
+            InstantiationException, IllegalAccessException, NoSuchMethodException {
         File file = new File(filePath);
         return read(file, clazz);
     }
