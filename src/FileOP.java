@@ -1,3 +1,4 @@
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.io.FileNotFoundException;
 import java.util.Collection;
@@ -11,10 +12,11 @@ class FileOP {
     static <T> List<T> read(File file, Class<T> clazz) throws InvocationTargetException, FileNotFoundException,
             InstantiationException, IllegalAccessException, NoSuchMethodException {
         var list = new ArrayList<T>();
+        Constructor<T> constructor = clazz.getDeclaredConstructor(String.class);
         try (var read = new Scanner(file)) {
             while (read.hasNext()) {
                 var info = read.nextLine();
-                list.add(clazz.getDeclaredConstructor(String.class).newInstance(info));
+                list.add(constructor.newInstance(info));
             }
         }
         return list;
