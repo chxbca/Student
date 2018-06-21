@@ -1,11 +1,10 @@
 import java.io.IOException;
-import java.util.ArrayList;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        List<Student> stuArr = new ArrayList<>();
-        FileOP.read(stuArr);
+    public static void main(String[] args) throws IOException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        List<Student> stuArr = FileOP.read("data.txt", Student.class);
         StuUI.interFace2(stuArr);
     }
 }
