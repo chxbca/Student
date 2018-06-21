@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,8 +31,7 @@ class StuUI {
                     System.out.printf("平均分为%.3f%n", 1.0 * Student.getAllScore() / Student.getSchoolCount());
                     break;
                 case 2:
-                    list.sort((a, b) -> Integer.compare(b.getScore(), a.getScore()));
-                    list.forEach(System.out::println);
+                    list.stream().sorted(Comparator.comparingInt(Student::getScore)).forEach(System.out::println);
                     break;
                 case 3:
                     list.add(createStudent());
