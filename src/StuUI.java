@@ -3,7 +3,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-
 class StuUI {
     private static void interFace1() {
         System.out.println("1、计算平均分");
@@ -18,14 +17,9 @@ class StuUI {
         interFace1();
         Scanner reader = new Scanner(System.in);
         int chance = reader.nextInt();
-
         while (chance != 5) {
-            while (!(chance >= 1 && chance <= 4)) {
-                interFace1();
-                chance = reader.nextInt();
-                System.out.println("错误的输入");
-                System.out.print("请从新输入数字选择功能：");
-            }
+            interFace1();
+            chance = reader.nextInt();
             switch (chance) {
                 case 1:
                     System.out.printf("平均分为%.3f%n", 1.0 * Student.getAllScore() / Student.getSchoolCount());
@@ -39,6 +33,9 @@ class StuUI {
                 case 4:
                     FileOP.write(list);
                     break;
+                default:
+                    System.out.println("错误的输入");
+                    System.out.print("请从新输入数字选择功能：");
             }
             interFace1();
             System.out.print("请从新输入选项：");
