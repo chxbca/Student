@@ -1,7 +1,7 @@
-import java.io.IOException;
 import java.util.Comparator;
-import java.util.List;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.List;
 
 class StuUI {
     private static void interFace1() {
@@ -10,31 +10,32 @@ class StuUI {
         System.out.println("3、添加一个学生成绩");
         System.out.println("4、将数据保存到文件中");
         System.out.println("5、退出程序");
+        System.out.print("请输入数字选择功能：");
     }
 
     static void interFace2(List<Student> list) throws IOException {
         var reader = new Scanner(System.in);
         while (true) {
             interFace1();
-            System.out.print("请输入数字选择功能：");
             switch (reader.nextInt()) {
                 case 1:
                     System.out.printf("平均分为%.3f%n", 1.0 * Student.getAllScore() / Student.getSchoolCount());
-                    continue;
+                    break;
                 case 2:
                     list.stream().sorted(Comparator.comparingInt(Student::getScore)).forEach(System.out::println);
-                    continue;
+                    break;
                 case 3:
                     list.add(createStudent());
-                    continue;
+                    break;
                 case 4:
                     FileOP.write(list, "data.txt");
-                    continue;
+                    break;
                 case 5:
                     System.out.println("程序结束");
                     return;
                 default:
                     System.out.println("错误的输入");
+                    break;
             }
         }
     }

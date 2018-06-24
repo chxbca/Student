@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class Student {
+    private int score;
+    private String name;
     private static int allScore = 0;
     private static int schoolCount = 0;
-    private String name;
-    private int score;
 
 
     public Student(String stuInfo) {

@@ -1,4 +1,3 @@
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.io.FileNotFoundException;
 import java.util.Collection;
@@ -12,7 +11,7 @@ class FileOP {
     static <T> List<T> read(File file, Class<T> clazz) throws InvocationTargetException, FileNotFoundException,
             InstantiationException, IllegalAccessException, NoSuchMethodException {
         var list = new ArrayList<T>();
-        Constructor<T> constructor = clazz.getDeclaredConstructor(String.class);
+        var constructor = clazz.getDeclaredConstructor(String.class);
         try (var read = new Scanner(file)) {
             while (read.hasNext()) {
                 var info = read.nextLine();
@@ -24,18 +23,18 @@ class FileOP {
 
     static <T> List<T> read(String filePath, Class<T> clazz) throws InvocationTargetException, FileNotFoundException,
             InstantiationException, IllegalAccessException, NoSuchMethodException {
-        File file = new File(filePath);
+        var file = new File(filePath);
         return read(file, clazz);
     }
 
-    static void write(Collection<?> arr, File file) throws FileNotFoundException {
+    static void write(Collection<?> list, File file) throws FileNotFoundException {
         try (var out = new PrintWriter(file)) {
-            arr.forEach(out::println);
+            list.forEach(out::println);
         }
     }
 
-    static void write(Collection<?> arr, String filePath) throws FileNotFoundException {
+    static void write(Collection<?> list, String filePath) throws FileNotFoundException {
         var file = new File(filePath);
-        write(arr, file);
+        write(list, file);
     }
 }
