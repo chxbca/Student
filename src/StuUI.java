@@ -14,7 +14,7 @@ class StuUI {
     }
 
     static void interFace2(List<Student> list) throws IOException {
-        var reader = new Scanner(System.in);
+        Scanner reader = new Scanner(System.in);
         while (true) {
             interFace1();
             switch (reader.nextInt()) {
@@ -42,7 +42,7 @@ class StuUI {
 
     private static Student createStudent() {
         System.out.println("请按照 姓名 成绩 的方式输入学生成绩");
-        var reader = new Scanner(System.in);
+        Scanner reader = new Scanner(System.in);
         return new Student(reader.nextLine());
     }
 }

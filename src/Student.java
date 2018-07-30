@@ -8,7 +8,7 @@ public class Student {
 
 
     public Student(String stuInfo) {
-        var reader = new Scanner(stuInfo);
+        Scanner reader = new Scanner(stuInfo);
         name = reader.next();
         score = reader.nextInt();
         allScore += score;
