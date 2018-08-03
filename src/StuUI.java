@@ -1,5 +1,4 @@
 import java.util.Comparator;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.List;
 
@@ -13,7 +12,7 @@ class StuUI {
         System.out.print("请输入数字选择功能：");
     }
 
-    static void interFace2(List<Student> list) throws IOException {
+    static void interFace2(List<Student> list) throws Exception {
         Scanner reader = new Scanner(System.in);
         while (true) {
             interFace1();
@@ -43,6 +42,12 @@ class StuUI {
     private static Student createStudent() {
         System.out.println("请按照 姓名 成绩 的方式输入学生成绩");
         Scanner reader = new Scanner(System.in);
-        return new Student(reader.nextLine());
+        Student student;
+        try {
+            student = new Student(reader.nextLine());
+        } catch (Exception e) {
+            student = createStudent();
+        }
+        return student;
     }
 }

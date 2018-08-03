@@ -7,10 +7,13 @@ public class Student {
     private static int schoolCount = 0;
 
 
-    public Student(String stuInfo) {
+    public Student(String stuInfo) throws Exception {
         Scanner reader = new Scanner(stuInfo);
         name = reader.next();
         score = reader.nextInt();
+        if (score > 100 || score < 0) {
+            throw new Exception("输入的分数信息错误");
+        }
         allScore += score;
         schoolCount++;
     }
