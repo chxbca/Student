@@ -18,7 +18,8 @@ class StuUI {
             interFace1();
             switch (reader.nextInt()) {
                 case 1:
-                    System.out.printf("平均分为%.3f%n", 1.0 * Student.getAllScore() / Student.getSchoolCount());
+                    double average = list.stream().mapToDouble(Student::getScore).sum() / list.size();
+                    System.out.printf("平均分为%.3f%n", average);
                     break;
                 case 2:
                     list.stream().sorted(Comparator.comparingInt(Student::getScore)).forEach(System.out::println);
