@@ -1,8 +1,10 @@
 import java.util.Comparator;
-import java.util.Scanner;
 import java.util.List;
+import java.util.OptionalDouble;
+import java.util.Scanner;
 
 class StuUI {
+
     private static void interFace1() {
         System.out.println("1、计算平均分");
         System.out.println("2、排序并输出成绩");
@@ -16,21 +18,22 @@ class StuUI {
         Scanner reader = new Scanner(System.in);
         while (true) {
             interFace1();
-            switch (reader.nextInt()) {
-                case 1:
-                    double average = list.stream().mapToDouble(Student::getScore).sum() / list.size();
-                    System.out.printf("平均分为%.3f%n", average);
+            switch (reader.next()) {
+                case "1":
+                    OptionalDouble average = list.parallelStream().mapToDouble(Student::getScore).average();
+                    if (average.isPresent())
+                        System.out.printf("平均分为%.3f%n", average.getAsDouble());
                     break;
-                case 2:
+                case "2":
                     list.stream().sorted(Comparator.comparingInt(Student::getScore)).forEach(System.out::println);
                     break;
-                case 3:
+                case "3":
                     list.add(createStudent());
                     break;
-                case 4:
+                case "4":
                     FileOP.write(list, "data.txt");
                     break;
-                case 5:
+                case "5":
                     System.out.println("程序结束");
                     return;
                 default:
