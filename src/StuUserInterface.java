@@ -3,7 +3,10 @@ import java.util.List;
 import java.util.OptionalDouble;
 import java.util.Scanner;
 
-class StuUI {
+/**
+ * @author chxbca
+ */
+class StuUserInterface {
 
     private static void interFace1() {
         System.out.println("1、计算平均分");
@@ -21,8 +24,9 @@ class StuUI {
             switch (reader.next()) {
                 case "1":
                     OptionalDouble average = list.parallelStream().mapToDouble(Student::getScore).average();
-                    if (average.isPresent())
+                    if (average.isPresent()) {
                         System.out.printf("平均分为%.3f%n", average.getAsDouble());
+                    }
                     break;
                 case "2":
                     list.stream().sorted(Comparator.comparingInt(Student::getScore)).forEach(System.out::println);
@@ -31,7 +35,7 @@ class StuUI {
                     list.add(createStudent());
                     break;
                 case "4":
-                    FileOP.write(list, "data.txt");
+                    FileOperate.write(list, "data.txt");
                     break;
                 case "5":
                     System.out.println("程序结束");

@@ -1,13 +1,16 @@
-import java.lang.reflect.Constructor;
-import java.util.Collection;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.List;
 import java.io.File;
+import java.io.PrintWriter;
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Scanner;
 
-class FileOP {
-    static <T> List<T> read(File file, Class<T> clazz) throws Exception {
+/**
+ * @author chxbca
+ */
+class FileOperate {
+    private static <T> List<T> read(File file, Class<T> clazz) throws Exception {
         List<T> list = new ArrayList<>();
         Constructor<T> constructor = clazz.getDeclaredConstructor(String.class);
         try (Scanner read = new Scanner(file)) {
@@ -24,7 +27,7 @@ class FileOP {
         return read(file, clazz);
     }
 
-    static void write(Collection<?> list, File file) throws Exception {
+    private static void write(Collection<?> list, File file) throws Exception {
         try (PrintWriter out = new PrintWriter(file)) {
             list.forEach(out::println);
         }
